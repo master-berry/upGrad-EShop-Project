@@ -14,6 +14,10 @@ const ProductCards = ({ searchQuery, category, sortBy }) => {
   const [selectedProductId, setSelectedProductId] = useState(null); // State for selected product ID
   const [open, setOpen] = useState(false); // State for deletion confirmation modal
 
+  const handleBuyButtonClick = (productID) => {
+    navigate(`/product-detail/${productID}`);
+  };
+
   const CustomColorButton = styled(Button)({
     backgroundColor: '#3f51b5',
     color: 'white',
@@ -151,7 +155,10 @@ const ProductCards = ({ searchQuery, category, sortBy }) => {
               </Typography>
             </CardContent>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 10 }}>
-              <CustomColorButton variant="contained">Buy</CustomColorButton>
+            <CustomColorButton variant="contained" onClick={() => handleBuyButtonClick(product.id)}>
+              Buy
+            </CustomColorButton>
+
               {isAdmin && (
                 <div>
                   <IconButton onClick={() => handleEditClick(product.id)} aria-label="edit">

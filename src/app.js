@@ -8,6 +8,7 @@ import SignUp from './components/signup/signup';
 import ProductsPage from './components/product-page/product-page';
 import AddProduct from './components/add-product/add-product';
 import ModifyProduct from './components/modify-product/modify-product';
+import ProductDetailPage from './components/product-detail/product-detail';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState(''); // State for search query
@@ -24,6 +25,7 @@ function App() {
             <Route path="/products" element={<ProductsPage searchQuery={searchQuery} />} />
             <Route path="/add-product" element={<AddProduct />} />
             <Route path="/modify-product/:id" element={<ModifyProduct />} />
+            <Route path="/product-detail/:id" element={<ProductDetailPage />} />
           </Routes>
         </div>
       </Router>
