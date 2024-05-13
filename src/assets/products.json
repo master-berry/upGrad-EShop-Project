@@ -1,0 +1,171 @@
+[
+    {
+      "_id": {
+        "$oid": "66388ef44b7a8f26def9ee58"
+      },
+      "name": "Sony PlayStation®5 Console (slim)",
+      "category": "Electronics",
+      "price": 54990,
+      "description": "Slim Design, Integrated I/O, Up to 120fps with 120Hz output, Haptic Feedback, Includes ASTRO’S",
+      "manufacturer": "Sony",
+      "availableItems": 20,
+      "imageUrl": "https://imgur.com/JlVVEtd.jpg",
+      "version": 19,
+      "_class": "com.upgrad.ecommerce.models.Product"
+    },
+    {
+      "_id": {
+        "$oid": "66389c8b4b7a8f26def9ee59"
+      },
+      "name": "Apple iPhone 15 (512 GB) - Black",
+      "category": "Electronics",
+      "price": 98500,
+      "description": "DYNAMIC ISLAND COMES TO IPHONE 15, INNOVATIVE DESIGN, 48MP MAIN CAMERA WITH 2X TELEPHOTO, NEXT-GENERATION PORTRAITS, POWERHOUSE A16 BIONIC CHIP",
+      "manufacturer": "Apple",
+      "availableItems": 15,
+      "imageUrl": "https://imgur.com/uhfSFhR.jpg",
+      "version": 4,
+      "_class": "com.upgrad.ecommerce.models.Product"
+    },
+    {
+      "_id": {
+        "$oid": "66389d7a4b7a8f26def9ee5a"
+      },
+      "name": "OnePlus 12 (Silky Black, 16GB RAM, 512GB Storage)",
+      "category": "Electronics",
+      "price": 69998,
+      "description": "Pro-Level Hasselblad Camera System Primary: -50MP Sony's LYT-808 with OIS - 64 MP 3X Periscope Telephoto for studio-level portraits - 48 MP Ultra-wide 114° Fov, Elite, Long-lasting Performance - Qualcomm Snapdragon 8 Gen 3 Mobile Platform, Pristine 2K Display with Aqua Touch, Operating System: OxygenOS based on Android 14, Ultra fast charging, unwired: - Amp up your power with the 5400 mAh battery, wired 100W SUPERVOOC - Ultra-fast 50W wireless charging - 19 hours of YouTube playback",
+      "manufacturer": "OnePlus",
+      "availableItems": 25,
+      "imageUrl": "https://imgur.com/Vyh1ool.jpg",
+      "version": 2,
+      "_class": "com.upgrad.ecommerce.models.Product"
+    },
+    {
+      "_id": {
+        "$oid": "6638b4e04b7a8f26def9ee5b"
+      },
+      "name": "Samsung Galaxy S24 Ultra 5G AI Smartphone (Titanium Gray, 12GB, 256GB Storage)",
+      "category": "Electronics",
+      "price": 129999,
+      "description": "Meet Galaxy S24 Ultra, the ultimate form of Galaxy Ultra with a new titanium exterior and a 17.25cm (6.8\") flat display. It's an absolute marvel of design. The legacy of Galaxy Note is alive and well. Write, tap and navigate with precision your fingers wish they had on the new, flat display. With the most megapixels on a smartphone and AI processing, Galaxy S24 Ultra sets the industry standard for image quality every time you hit the shutter. What's more, the new ProVisual engine recognizes objects — improving colour tone, reducing noise and bringing out detail. A new way to search is here with Circle to Search. While scrolling your fav social network, use your S Pen or finger to circle something and get Google Search results. Victory can be yours with the new Snapdragon 8 Gen 3 for Galaxy. Faster processing gives you the power you need for all the gameplay you want. Then, manifest graphic effects in real time with ray tracing for hyper-realistic shadows and reflections.",
+      "manufacturer": "Samsung",
+      "availableItems": 10,
+      "imageUrl": "https://imgur.com/SACmEiB.jpg",
+      "version": 2,
+      "_class": "com.upgrad.ecommerce.models.Product"
+    },
+    {
+      "_id": {
+        "$oid": "6639967d2f635f267a23a8b3"
+      },
+      "name": "Levi's Men's 511 Blue Slim Jeans",
+      "category": "Apparel",
+      "price": 2699,
+      "description": "Versatile and high on style, these Men's 511 Blue Slim Jeans are a unique item of clothing. Made from durable cotton material, these slim fit jeans keep you comfy all day long.",
+      "manufacturer": "Levi's",
+      "availableItems": 30,
+      "imageUrl": "https://imgur.com/pS38AS4.jpg",
+      "version": 19,
+      "_class": "com.upgrad.ecommerce.models.Product"
+    },
+    {
+      "_id": {
+        "$oid": "663996da2f635f267a23a8b4"
+      },
+      "name": "Levi's Men's 511 Slim Fit Jeans",
+      "category": "Apparel",
+      "price": 3399,
+      "description": "Versatile and high on style, these Men's 511 Blue Slim Jeans are a unique item of clothing. Made from durable cotton blend material, these slim fit jeans keep you comfy all day long.",
+      "manufacturer": "Levi's",
+      "availableItems": 30,
+      "imageUrl": "https://imgur.com/0XR2OXz.jpg",
+      "version": 0,
+      "_class": "com.upgrad.ecommerce.models.Product"
+    },
+    {
+      "_id": {
+        "$oid": "6639974e2f635f267a23a8b5"
+      },
+      "name": "Lee Men Shirt",
+      "category": "Apparel",
+      "price": 1509,
+      "description": "This comfortable and stylish checked beige shirt from Lee is updated with a modern slim fit. It is designed with Indian-native seersucker fabric which is light, durable, and incredibly breathable. Pair it with lightweight jeans and sandals to complete your look.",
+      "manufacturer": "Lee",
+      "availableItems": 30,
+      "imageUrl": "https://imgur.com/MUcIhnI.jpg",
+      "version": 0,
+      "_class": "com.upgrad.ecommerce.models.Product"
+    },
+    {
+      "_id": {
+        "$oid": "663997b32f635f267a23a8b6"
+      },
+      "name": "Wrangler Men's Shirt",
+      "category": "Apparel",
+      "price": 1199,
+      "description": "Get a festive look with this Wrangler checked shirt. It is made from 100% cotton for comfortable and durable wear. Style it up with a pair of denim shorts for a laid-back look.",
+      "manufacturer": "Wrangler",
+      "availableItems": 30,
+      "imageUrl": "https://imgur.com/tW00zsK.jpg",
+      "version": 0,
+      "_class": "com.upgrad.ecommerce.models.Product"
+    },
+    {
+      "_id": {
+        "$oid": "663998e02f635f267a23a8b7"
+      },
+      "name": "Gillette Fusion Proglide 4-in-1 Styler for Trimming | Shaving | Beard Edging | Body Hair Trimming Multi",
+      "category": "Personal Care",
+      "price": 949,
+      "description": "Gillette Fusion Proglide 4-in-1 Styler is Gillette's 1st every go to styling tool for every man",
+      "manufacturer": "Gillette",
+      "availableItems": 50,
+      "imageUrl": "https://imgur.com/2cAoUCU.jpg",
+      "version": 0,
+      "_class": "com.upgrad.ecommerce.models.Product"
+    },
+    {
+      "_id": {
+        "$oid": "663999312f635f267a23a8b8"
+      },
+      "name": "Bombay Shaving Co Silver Precision Safety Razor For Men | Gift Set For Men | Shaving Razor For Men | Gifts For Men",
+      "category": "Personal Care",
+      "price": 999,
+      "description": "Rediscover the art of shaving with our premium metal precision safety razor for men and get the closest single-stroke shave. Comes with a double-edged blade for enhanced effectiveness, which glides smoothly across the face, eliminating cuts & nicks Designed with a weighted handle for a luxurious shave. The gravity-assisted glide action ensures you’re in control of every stroke Comes with an Aggressive alternate clamp for thicker facial hair Comes with a pack of Japanese-engineered stainless steel feather blades The razor sheath provides an additional layer of protection. Our razor for men will ensure you’re always the best shaved. PERFECT GIFT FOR MEN : This gift set is curated to suit all your shaving needs. It is perfect for all all occasions for your father, brother, boyfriend and husband",
+      "manufacturer": "Bombay Shaving Co",
+      "availableItems": 45,
+      "imageUrl": "https://imgur.com/Q70pCmj.jpg",
+      "version": 0,
+      "_class": "com.upgrad.ecommerce.models.Product"
+    },
+    {
+      "_id": {
+        "$oid": "6639997d2f635f267a23a8b9"
+      },
+      "name": "Old Spice ASL After Shave Lotion | Atomizer Spray | Original | Cool, Aromatic and Fresh | 150ml",
+      "category": "Personal Care",
+      "price": 276,
+      "description": "Cools, Stimulates, Refreshes, Puts you in Command Soothes and freshens your skin after shaving Helps heal tiny razor cuts and nick Use liberally after each shave over face, neck and body",
+      "manufacturer": "Old Spice",
+      "availableItems": 60,
+      "imageUrl": "https://imgur.com/W53nqsY.jpg",
+      "version": 0,
+      "_class": "com.upgrad.ecommerce.models.Product"
+    },
+    {
+      "_id": {
+        "$oid": "663999c32f635f267a23a8ba"
+      },
+      "name": "Gillette Fusion Premium Gift Set for Men | 1 Gillette Fusion Manual Handle, 4 Gillette Fusion Cartridges, 1 Travel Case Black",
+      "category": "Personal Care",
+      "price": 1109,
+      "description": "This festive season, gift the men in your life with this thoughtfully designed, premium gift set for men from Gillette Fusion. This is an ideal choice for gifting because it has everything a man needs to up his grooming game and add an edge to your personality. Free Travel Case Inside",
+      "manufacturer": "Gillette",
+      "availableItems": 30,
+      "imageUrl": "https://imgur.com/ATcaW2r.jpg",
+      "version": 0,
+      "_class": "com.upgrad.ecommerce.models.Product"
+    }
+  ]
+  

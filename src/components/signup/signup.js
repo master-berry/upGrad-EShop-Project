@@ -31,8 +31,10 @@ const SignUp = () => {
           email,
           password,
           contactNumber,
-        }),
+        }),        
       });
+      
+
 
       // Check if request was successful
       if (response.ok) {

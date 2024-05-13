@@ -71,6 +71,7 @@ const Navbar = ({ setSearchQuery }) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    localStorage.removeItem('token');
     dispatch(logoutSuccess());
     navigate('/signin');
   };

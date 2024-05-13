@@ -9,6 +9,7 @@ import ProductsPage from './components/product-page/product-page';
 import AddProduct from './components/add-product/add-product';
 import ModifyProduct from './components/modify-product/modify-product';
 import ProductDetailPage from './components/product-detail/product-detail';
+import AddAddress from './components/ordering.js/add-address';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState(''); // State for search query
@@ -26,6 +27,7 @@ function App() {
             <Route path="/add-product" element={<AddProduct />} />
             <Route path="/modify-product/:id" element={<ModifyProduct />} />
             <Route path="/product-detail/:id" element={<ProductDetailPage />} />
+            <Route path="/add-address" element={<AddAddress />} />
           </Routes>
         </div>
       </Router>

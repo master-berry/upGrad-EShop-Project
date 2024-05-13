@@ -8,18 +8,8 @@ const SortDropdown = ({ setSortBy }) => {
     const value = event.target.value;
     setLocalSortBy(value);
 
-    // Handle sorting logic internally
-    switch (value) {
-      case 'Default':
-        setSortBy(''); // Reset sorting
-        break;
-      case 'Newest':
-        setSortBy('modifiedAt'); // Sort by modification date
-        break;
-      default:
-        setSortBy(value); // Sort by other options
-        break;
-    }
+    // Pass selected value directly to the parent component
+    setSortBy(value);
   };
 
   return (

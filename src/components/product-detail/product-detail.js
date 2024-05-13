@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Typography, Button, TextField } from '@mui/material';
 
 const ProductDetailPage = () => {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState('');
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:8080/api/products/${id}`)
@@ -24,6 +25,10 @@ const ProductDetailPage = () => {
   const isQuantityValid = () => {
     return parseInt(quantity) <= product.availableItems;
   }
+
+  const handlePlaceOrder = () => {
+    navigate('/add-address');
+  };
 
   return (
     <div style={{ marginTop: '150px', display: 'flex', justifyContent: 'center', textAlign: 'center' }}>
@@ -76,6 +81,7 @@ const ProductDetailPage = () => {
                 variant="contained"
                 style={{ backgroundColor: '#3f51b5', color: 'white', width: '100%' }}
                 disabled={!isQuantityValid()}
+                onClick={handlePlaceOrder}
               >
                 Place Order
               </Button>

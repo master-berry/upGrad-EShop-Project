@@ -13,6 +13,8 @@ const ProductCards = ({ searchQuery, category, sortBy }) => {
   const dispatch = useDispatch();
   const [selectedProductId, setSelectedProductId] = useState(null); // State for selected product ID
   const [open, setOpen] = useState(false); // State for deletion confirmation modal
+  const [originalOrder, setOriginalOrder] = useState([]);
+
 
   const handleBuyButtonClick = (productID) => {
     navigate(`/product-detail/${productID}`);
@@ -39,36 +41,32 @@ const ProductCards = ({ searchQuery, category, sortBy }) => {
         .then(data => {
           if (category === 'All') {
             setProducts(data);
+            setOriginalOrder([...data]); // Store original order of products
           } else {
-            setProducts(data.filter(product => product.category === category));
+            const filteredProducts = data.filter(product => product.category === category);
+            setProducts(filteredProducts);
+            setOriginalOrder([...filteredProducts]); // Store original order of filtered products
           }
         })
         .catch(error => console.error('Error fetching products:', error));
     }
   }, [isLoggedIn, navigate, category]);
-
-  // Sort products based on selected sorting option
+  
   useEffect(() => {
-    if (sortBy) {
-      setProducts(prevProducts => {
-        const sortedProducts = [...prevProducts];
-        switch (sortBy) {
-          case 'Price high to low':
-            sortedProducts.sort((a, b) => b.price - a.price);
-            break;
-          case 'Price low to high':
-            sortedProducts.sort((a, b) => a.price - b.price);
-            break;
-          case 'Newest':
-            sortedProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-            break;
-          default:
-            break;
-        }
-        return sortedProducts;
-      });
-    }
-  }, [sortBy]);
+    setProducts(prevProducts => {
+      if (sortBy === 'Default') {
+        return [...originalOrder]; // Restore the original order
+      } else if (sortBy === 'Price high to low') {
+        return [...prevProducts].sort((a, b) => b.price - a.price);
+      } else if (sortBy === 'Price low to high') {
+        return [...prevProducts].sort((a, b) => a.price - b.price);
+      } else if (sortBy === 'Newest') {
+        return [...prevProducts].reverse();
+      }
+      // Return the previous products array if sortBy doesn't match any condition
+      return prevProducts;
+    });
+  }, [sortBy, originalOrder]);
 
   const filteredProducts = searchQuery
     ? products.filter(product =>

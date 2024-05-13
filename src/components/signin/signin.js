@@ -29,6 +29,7 @@ const SignIn = () => {
       if (response.ok) {
         const data = await response.json(); // Extract response body
         const { token } = data; // Extract token from response
+        console.log(data);
         console.log('User authenticated successfully!');
 
         // Store the token in local storage
