@@ -1,21 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Typography, Button, TextField } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 const ProductDetailPage = () => {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState('');
   const { id } = useParams();
   const navigate = useNavigate();
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn); // Assuming this state is available from Redux
+  const userIsAdmin = useSelector(state => state.auth.isAdmin); // Assuming this state represents the user's admin status
 
   useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/signin'); // Redirect to signin if not logged in
+    }
+  }, [isLoggedIn, navigate]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      fetchProductData(id);
+    }
+  }, [isLoggedIn, id]);
+
+  const fetchProductData = (productId) => {
     fetch(`http://localhost:8080/api/products/${id}`)
       .then(response => response.json())
       .then(data => {
         setProduct(data);
+        console.log(data);
       })
       .catch(error => console.error('Error fetching product:', error));
-  }, [id]);
+  };
 
   const handleQuantityChange = (event) => {
     const newQuantity = event.target.value;

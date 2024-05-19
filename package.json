@@ -21,6 +21,7 @@
     "react-scripts": "5.0.1",
     "react-select": "^5.8.0",
     "redux": "^5.0.1",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^3.1.0",
     "swagger-ui-express": "^5.0.0",
     "swagger-ui-react": "^5.17.2",

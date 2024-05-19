@@ -31,7 +31,6 @@ const SignIn = () => {
             const data = await response.json(); // Extract response body
             console.log(data);
             console.log('User authenticated successfully!');
-            dispatch(setUserData(data));
 
             // Try to extract the token from the response headers
             let token = response.headers.get('x-auth-token');
@@ -41,6 +40,7 @@ const SignIn = () => {
             }
 
             console.log('Received token:', token); // Log the token for debugging
+            console.log('Received data:', data); // Log the response data for debugging
 
             if (!token) {
                 throw new Error('Token not found in response headers or body');
@@ -57,6 +57,7 @@ const SignIn = () => {
             // Dispatch login success action and update isAdmin status
             dispatch(loginSuccess());
             dispatch(updateIsAdmin(isAdmin));
+            dispatch(setUserData(data));
 
             // Navigate to products page
             navigate('/products');

@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Stepper, Step, StepLabel, Button, Snackbar, Typography, TextField, Box } from '@mui/material';
+import { Stepper, Step, StepLabel, Button, Snackbar, Typography, TextField, Box, MenuItem } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import ProductDetailPage from '../product-detail/product-detail';
 import { jwtDecode } from 'jwt-decode';
+import { useSelector } from 'react-redux';
+
+const selectUserData = state => state.user.userData;
 
 const AddAddress = () => {
   const [activeStep, setActiveStep] = useState(1);
+  const userData = useSelector(selectUserData);
   const [selectedAddress, setSelectedAddress] = useState('');
+  const [addresses, setAddresses] = useState([]);
   const navigate = useNavigate();  
   const [newAddress, setNewAddress] = useState({
     name: '',
@@ -39,12 +44,17 @@ const AddAddress = () => {
   };
 
   const handleBack = () => {
-    setActiveStep(prevStep => prevStep - 1);
+    navigate(-1);
   };
 
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
+
+  useEffect(() => {
+    // Fetch addresses when the component mounts
+    fetchAddresses();
+  }, []);
 
   const handleAddressSelect = (event) => {
     setSelectedAddress(event.target.value);
@@ -59,7 +69,7 @@ const AddAddress = () => {
   const handleAddAddress = () => {
     // Retrieve token from local storage
     const token = localStorage.getItem('token');
-  
+
     // Check if token exists
     if (!token) {
         // Handle case where token is not available
@@ -69,6 +79,16 @@ const AddAddress = () => {
         return;
     }
 
+    // Ensure userData is available
+    if (!userData || !userData.id) {
+        // Handle case where userData is not available or missing id
+        console.error('User data not available or missing id');
+        setSnackbarMessage('User data not available. Please sign in again.');
+        setSnackbarSeverity('error');
+        setSnackbarOpen(true);
+        return;
+    }        
+
     // Decode the token to extract user information
     const decodedToken = jwtDecode(token);
     const userId = decodedToken.id; // Extract user ID from token
@@ -76,11 +96,11 @@ const AddAddress = () => {
     // Create headers with authorization token
     const headers = {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        'x-auth-token' : `${token}`,
     };
 
     // Add the user ID to the new address object
-    const addressWithUser = { ...newAddress, user: userId };
+    const addressWithUser = { ...newAddress, user: userData.id };
 
     // Make POST request to API endpoint
     fetch('http://localhost:8080/api/addresses', {
@@ -94,6 +114,7 @@ const AddAddress = () => {
             setSnackbarMessage('Address saved successfully!');
             setSnackbarSeverity('success');
             setSnackbarOpen(true);
+            fetchAddresses();
         } else {
             // Handle case where request was not successful
             return response.json().then(data => {
@@ -111,17 +132,43 @@ const AddAddress = () => {
         setSnackbarOpen(true);
     });
 };
-  
+
+const fetchAddresses = async () => {
+  try {
+    const token = localStorage.getItem('token');
+    const userId = userData.id;
+    console.log('Fetching addresses for user ID:', userId);
+    const headers = {
+      'Content-Type': 'application/json',
+      'x-auth-token': `${token}`,
+    };
+    const response = await fetch(`http://localhost:8080/api/addresses/`, {
+      headers: headers
+    });
+    if (response.ok) {
+      const data = await response.json();
+      // Filter addresses to include only those that match the userId
+      const filteredAddresses = data.filter(address => address.user === userId);
+      setAddresses(filteredAddresses); // Update state with filtered addresses
+    } else {
+      console.error('Failed to fetch addresses');
+    }
+  } catch (error) {
+    console.error('Error fetching addresses:', error);
+  }
+};
   
   return (
     <Box display="flex" flexDirection="column" alignItems="center" marginTop="50px">
-      <Stepper activeStep={activeStep} alternativeLabel>
-        {steps.map((label) => (
+      <Box width="80%">
+        <Stepper activeStep={activeStep} alternativeLabel>
+          {steps.map((label) => (
           <Step key={label}>
-            <StepLabel>{label}</StepLabel>
+          <StepLabel>{label}</StepLabel>
           </Step>
-        ))}
-      </Stepper>
+          ))}
+        </Stepper>
+      </Box>
       <Box marginTop="50px">
         {activeStep === 1 ? (
           <div>
@@ -136,7 +183,11 @@ const AddAddress = () => {
                 style={{ width: '800px', marginBottom: '15px' }}
                 InputProps={{ placeholder: 'Select...' }}
               >
-                {/* Fetch existing addresses and display them here */}
+                {addresses.map((address) => (
+                  <MenuItem key={address.id} value={address.id}>
+                    {`${address.street}, ${address.city}, ${address.state}, ${address.zipcode}`}
+                  </MenuItem>
+                ))}
               </TextField>
             </div>
             <Box display="flex" flexDirection="column" alignItems="center" marginBottom="15px">
