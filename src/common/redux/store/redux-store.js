@@ -13,7 +13,8 @@ const initialState = {
   snackbar: { // Initialize snackbar state
     message: '',
     open: false
-  }
+  },
+  user: {}
   // Add more initial state properties as needed
 };
 

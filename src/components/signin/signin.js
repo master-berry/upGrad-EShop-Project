@@ -5,6 +5,7 @@ import { LockOutlined } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 import { loginSuccess, updateIsAdmin } from '../../common/redux/actions/auth-actions';
 import { jwtDecode } from 'jwt-decode';
+import { setUserData } from '../../common/redux/actions/userSlice';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -15,44 +16,58 @@ const SignIn = () => {
 
   const handleSignIn = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/auth/signin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          username: email,
-          password
-        })
-      });
+        const response = await fetch('http://localhost:8080/api/auth/signin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: email,
+                password
+            })
+        });
 
-      if (response.ok) {
-        const data = await response.json(); // Extract response body
-        const { token } = data; // Extract token from response
-        console.log(data);
-        console.log('User authenticated successfully!');
+        if (response.ok) {
+            const data = await response.json(); // Extract response body
+            console.log(data);
+            console.log('User authenticated successfully!');
+            dispatch(setUserData(data));
 
-        // Store the token in local storage
-      localStorage.setItem('token', token);
+            // Try to extract the token from the response headers
+            let token = response.headers.get('x-auth-token');
+            if (!token) {
+                console.warn('Token not found in response headers. Checking response body.');
+                token = data.token; // Fallback to check if token is in the response body
+            }
 
-        // Decode JWT token to access its payload
-        const decodedToken = jwtDecode(token);
-        const isAdmin = decodedToken.sub.includes('admin'); // Check if user is admin
+            console.log('Received token:', token); // Log the token for debugging
 
-        // Dispatch login success action and update isAdmin status
-        dispatch(loginSuccess());
-        dispatch(updateIsAdmin(isAdmin));
+            if (!token) {
+                throw new Error('Token not found in response headers or body');
+            }
 
-        // Navigate to products page
-        navigate('/products');
-      } else {
-        console.error('Authentication failed');
-        setError('Authentication failed');
-      }
+            // Store the token in local storage
+            localStorage.setItem('token', token);
+
+            // Decode JWT token to access its payload
+            const decodedToken = jwtDecode(token);
+            console.log(decodedToken);
+            const isAdmin = data.roles.includes('ADMIN'); // Check if user is admin
+
+            // Dispatch login success action and update isAdmin status
+            dispatch(loginSuccess());
+            dispatch(updateIsAdmin(isAdmin));
+
+            // Navigate to products page
+            navigate('/products');
+        } else {
+            console.error('Authentication failed');
+            setError('Authentication failed');
+        }
     } catch (error) {
-      console.error('Error occurred while signing in:', error);
+        console.error('Error occurred while signing in:', error);
     }
-  };
+};
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {

@@ -62,54 +62,55 @@ const AddAddress = () => {
   
     // Check if token exists
     if (!token) {
-      // Handle case where token is not available
-      setSnackbarMessage('User not authenticated. Please log in.');
-      setSnackbarSeverity('error');
-      setSnackbarOpen(true);
-      return;
+        // Handle case where token is not available
+        setSnackbarMessage('User not authenticated. Please log in.');
+        setSnackbarSeverity('error');
+        setSnackbarOpen(true);
+        return;
     }
 
     // Decode the token to extract user information
     const decodedToken = jwtDecode(token);
-    const user = 'decodedToken.sub;'
-    const addressWithUser = { ...newAddress, user };
-    console.log(addressWithUser);
-  
+    const userId = decodedToken.id; // Extract user ID from token
+
     // Create headers with authorization token
     const headers = {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
     };
-  
+
+    // Add the user ID to the new address object
+    const addressWithUser = { ...newAddress, user: userId };
+
     // Make POST request to API endpoint
     fetch('http://localhost:8080/api/addresses', {
-      method: 'POST',
-      headers: headers,
-      body: JSON.stringify(addressWithUser),
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(addressWithUser),
     })
-      .then(response => {
+    .then(response => {
         if (response.ok) {
-          // Address saved successfully
-          setSnackbarMessage('Address saved successfully!');
-          setSnackbarSeverity('success');
-          setSnackbarOpen(true);
-        } else {
-          // Handle case where request was not successful
-          return response.json().then(data => {
-            setSnackbarMessage(`Error: ${data.message}`);
-            setSnackbarSeverity('error');
+            // Address saved successfully
+            setSnackbarMessage('Address saved successfully!');
+            setSnackbarSeverity('success');
             setSnackbarOpen(true);
-          });
+        } else {
+            // Handle case where request was not successful
+            return response.json().then(data => {
+                setSnackbarMessage(`Error: ${data.message}`);
+                setSnackbarSeverity('error');
+                setSnackbarOpen(true);
+            });
         }
-      })
-      .catch(error => {
+    })
+    .catch(error => {
         // Handle any unexpected errors
         console.error('Error:', error);
         setSnackbarMessage('An unexpected error occurred');
         setSnackbarSeverity('error');
         setSnackbarOpen(true);
-      });
-  };
+    });
+};
   
   
   return (
