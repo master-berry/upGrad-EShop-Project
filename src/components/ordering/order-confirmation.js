@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Typography, Button, Box, Stepper, Step, StepLabel, Snackbar, Alert } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { Typography, Button, Box, Stepper, Step, StepLabel } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSnackbarMessage } from '../../common/redux/actions/snackbar-actions'; // Import the action
 
 // Selector to get user data from Redux store
 const selectUserData = state => state.user.userData;
@@ -10,9 +11,7 @@ const OrderConfirmation = () => {
   const location = useLocation();
   const { productDetails, selectedAddress } = location.state || {};
   const navigate = useNavigate();
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+  const dispatch = useDispatch();
   const userData = useSelector(selectUserData);
 
   const steps = ['Items', 'Select Address', 'Order Confirmation'];
@@ -43,27 +42,17 @@ const OrderConfirmation = () => {
       });
 
       if (response.ok) {
-        setSnackbarSeverity('success');
-        setSnackbarMessage('Order placed successfully!');
-        setSnackbarOpen(true);
-        setTimeout(() => {
-          navigate('/products'); // Redirect to products page
-        }, 2000);
+        dispatch(setSnackbarMessage('Order placed successfully!')); // Set snackbar message
+        navigate('/products'); // Redirect to products page
       } else {
         const errorData = await response.json();
-        setSnackbarSeverity('error');
-        setSnackbarMessage(`Failed to place order: ${errorData.message}`);
-        setSnackbarOpen(true);
+        dispatch(setSnackbarMessage(`Failed to place order: ${errorData.message}`));
+        navigate('/products'); // Redirect to products page
       }
     } catch (error) {
-      setSnackbarSeverity('error');
-      setSnackbarMessage('An unexpected error occurred while placing the order.');
-      setSnackbarOpen(true);
+      dispatch(setSnackbarMessage('An unexpected error occurred while placing the order.'));
+      navigate('/products'); // Redirect to products page
     }
-  };
-
-  const handleSnackbarClose = () => {
-    setSnackbarOpen(false);
   };
 
   if (!productDetails || !selectedAddress) {
@@ -118,16 +107,6 @@ const OrderConfirmation = () => {
           Place Order
         </Button>
       </Box>
-      <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={6000}
-        onClose={handleSnackbarClose}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      >
-        <Alert onClose={handleSnackbarClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
     </Box>
   );
 };
