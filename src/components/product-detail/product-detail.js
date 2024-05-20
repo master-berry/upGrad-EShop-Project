@@ -9,7 +9,6 @@ const ProductDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn); // Assuming this state is available from Redux
-  const userIsAdmin = useSelector(state => state.auth.isAdmin); // Assuming this state represents the user's admin status
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -43,7 +42,19 @@ const ProductDetailPage = () => {
   }
 
   const handlePlaceOrder = () => {
-    navigate('/add-address');
+    // Navigate to AddAddress page and pass product details and quantity as state
+    navigate('/add-address', {
+      state: {
+        productDetails: {
+          id: product.id,
+          name: product.name,
+          quantity: quantity,
+          category: product.category,
+          description: product.description,
+          totalPrice: product.price * quantity, // Calculate total price based on quantity
+        }
+      }
+    });
   };
 
   return (

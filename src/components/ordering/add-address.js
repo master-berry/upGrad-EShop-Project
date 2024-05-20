@@ -5,10 +5,14 @@ import MuiAlert from '@mui/material/Alert';
 import ProductDetailPage from '../product-detail/product-detail';
 import { jwtDecode } from 'jwt-decode';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import OrderConfirmation from './order-confirmation';
 
 const selectUserData = state => state.user.userData;
 
 const AddAddress = () => {
+  const location = useLocation();
+  const { productDetails } = location.state || {};
   const [activeStep, setActiveStep] = useState(1);
   const userData = useSelector(selectUserData);
   const [selectedAddress, setSelectedAddress] = useState('');
@@ -25,21 +29,27 @@ const AddAddress = () => {
   });
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarSeverity, setSnackbarSeverity] = useState('info');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('info');  
 
   const steps = ['Items', 'Select Address', 'Order Confirmation'];
 
   const handleNext = () => {
     if (activeStep === 1) {
       if (selectedAddress !== '') {
-        setActiveStep(prevStep => prevStep + 1);
+        // Find the selected address object from the addresses array
+        const address = addresses.find(addr => addr.id === selectedAddress);
+        // Navigate to OrderConfirmation page and pass productDetails and selectedAddress as state
+        navigate('/order-confirmation', {
+          state: {
+            productDetails: productDetails,
+            selectedAddress: address
+          }
+        });
       } else {
         setSnackbarMessage('Please select an address!');
         setSnackbarSeverity('error');
         setSnackbarOpen(true);
       }
-    } else {
-      // Handle other steps
     }
   };
 
@@ -88,10 +98,6 @@ const AddAddress = () => {
         setSnackbarOpen(true);
         return;
     }        
-
-    // Decode the token to extract user information
-    const decodedToken = jwtDecode(token);
-    const userId = decodedToken.id; // Extract user ID from token
 
     // Create headers with authorization token
     const headers = {
@@ -164,7 +170,7 @@ const fetchAddresses = async () => {
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label) => (
           <Step key={label}>
-          <StepLabel>{label}</StepLabel>
+          <StepLabel StepIconProps={{ style: { color: '#3f51b5' } }}>{label}</StepLabel>
           </Step>
           ))}
         </Stepper>
@@ -280,10 +286,8 @@ const fetchAddresses = async () => {
               <Button variant="contained" color="primary" onClick={handleAddAddress} style={{ width: '500px', marginBottom: '15px', backgroundColor: '#3f51b5' }}>Save Address</Button>
             </div>
           </div>
-        ) : activeStep === 2 ? (
-          <div>
-            {/* Order confirmation content */}
-          </div>
+        ) : activeStep === 2 && location.state ? (
+            <OrderConfirmation productDetails={location.state.productDetails} selectedAddress={selectedAddress} />
         ) : (
           <ProductDetailPage />
         )}
