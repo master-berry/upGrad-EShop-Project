@@ -38,7 +38,7 @@ const AddAddress = () => {
       if (selectedAddress !== '') {
         // Find the selected address object from the addresses array
         const address = addresses.find(addr => addr.id === selectedAddress);
-        // Navigate to OrderConfirmation page and pass productDetails and selectedAddress as state
+        
         navigate('/order-confirmation', {
           state: {
             productDetails: productDetails,
@@ -62,7 +62,7 @@ const AddAddress = () => {
   };
 
   useEffect(() => {
-    // Fetch addresses when the component mounts
+    
     fetchAddresses();
   }, []);
 
@@ -155,7 +155,7 @@ const fetchAddresses = async () => {
       const data = await response.json();
       // Filter addresses to include only those that match the userId
       const filteredAddresses = data.filter(address => address.user === userId);
-      setAddresses(filteredAddresses); // Update state with filtered addresses
+      setAddresses(filteredAddresses); 
     } else {
       console.error('Failed to fetch addresses');
     }

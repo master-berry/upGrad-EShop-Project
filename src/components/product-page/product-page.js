@@ -6,7 +6,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import ModifyProduct from '../modify-product/modify-product';
 import { useSelector, useDispatch } from 'react-redux';
-import { closeSnackbar } from '../../common/redux/actions/snackbar-actions'; // Import closeSnackbar action
+import { closeSnackbar } from '../../common/redux/actions/snackbar-actions'; 
 
 const ProductsPage = ({ searchQuery }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -16,7 +16,7 @@ const ProductsPage = ({ searchQuery }) => {
   const dispatch = useDispatch();
 
   const handleSnackbarClose = () => {
-    dispatch(closeSnackbar()); // Dispatch closeSnackbar action
+    dispatch(closeSnackbar()); 
   };
 
   return (

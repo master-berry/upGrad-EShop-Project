@@ -1,4 +1,3 @@
-// snackbarActions.js
 export const setSnackbarMessage = (message) => ({
     type: 'SET_SNACKBAR_MESSAGE',
     payload: message

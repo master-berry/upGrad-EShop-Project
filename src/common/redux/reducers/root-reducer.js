@@ -1,5 +1,3 @@
-// root-reducer.js
-
 import { combineReducers } from 'redux';
 import authReducer from './auth-reducer';
 import snackbarReducer from './snackbar-reducer';

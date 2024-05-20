@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Typography, TextField, Button } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setSnackbarMessage } from '../../common/redux/actions/snackbar-actions'; // Import the setSnackbarMessage action
+import { setSnackbarMessage } from '../../common/redux/actions/snackbar-actions'; 
 
 const ModifyProduct = ({ setSnackbarOpen }) => {
     const dispatch = useDispatch();
@@ -44,7 +44,7 @@ const ModifyProduct = ({ setSnackbarOpen }) => {
     })
     .then(response => {
       if (response.ok) {
-        dispatch(setSnackbarMessage(`Product ${product.name} modified successfully.`)); // Dispatch setSnackbarMessage action
+        dispatch(setSnackbarMessage(`Product ${product.name} modified successfully.`)); 
         navigate('/products');
       } else {
         console.error('Failed to update product');

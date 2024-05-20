@@ -1,5 +1,3 @@
-// auth-reducer.js
-
 import { LOGIN_SUCCESS, LOGOUT_SUCCESS, UPDATE_IS_ADMIN } from '../actions/action-types';
 
 // Initial state for authentication

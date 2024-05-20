@@ -1,4 +1,3 @@
-// snackbarReducer.js
 import { CLOSE_SNACKBAR } from '../actions/snackbar-actions'; // Import the CLOSE_SNACKBAR action type
 
 const initialState = {

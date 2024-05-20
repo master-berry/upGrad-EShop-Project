@@ -1,5 +1,3 @@
-// auth-actions.js
-
 import { LOGIN_SUCCESS, LOGOUT_SUCCESS, UPDATE_IS_ADMIN } from './action-types';
 
 export const loginSuccess = () => ({

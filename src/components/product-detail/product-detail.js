@@ -8,11 +8,11 @@ const ProductDetailPage = () => {
   const [quantity, setQuantity] = useState('');
   const { id } = useParams();
   const navigate = useNavigate();
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn); // Assuming this state is available from Redux
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn); 
 
   useEffect(() => {
     if (!isLoggedIn) {
-      navigate('/signin'); // Redirect to signin if not logged in
+      navigate('/signin'); 
     }
   }, [isLoggedIn, navigate]);
 
@@ -42,7 +42,7 @@ const ProductDetailPage = () => {
   }
 
   const handlePlaceOrder = () => {
-    // Navigate to AddAddress page and pass product details and quantity as state
+    
     navigate('/add-address', {
       state: {
         productDetails: {

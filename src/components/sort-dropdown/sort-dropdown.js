@@ -8,7 +8,7 @@ const SortDropdown = ({ setSortBy }) => {
     const value = event.target.value;
     setLocalSortBy(value);
 
-    // Pass selected value directly to the parent component
+    
     setSortBy(value);
   };
 
@@ -19,7 +19,7 @@ const SortDropdown = ({ setSortBy }) => {
       <Select
         value={sortBy}
         onChange={handleSortChange}
-        style={{ marginBottom: '10px', width: '300px', marginLeft: '100px' }} // Adjust width and margin
+        style={{ marginBottom: '10px', width: '300px', marginLeft: '100px' }} 
         displayEmpty
         renderValue={(value) => (value === '' ? 'Select...' : value)}
         inputProps={{

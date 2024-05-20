@@ -28,7 +28,7 @@ const SignIn = () => {
         });
 
         if (response.ok) {
-            const data = await response.json(); // Extract response body
+            const data = await response.json(); 
             console.log(data);
             console.log('User authenticated successfully!');
 
@@ -36,11 +36,11 @@ const SignIn = () => {
             let token = response.headers.get('x-auth-token');
             if (!token) {
                 console.warn('Token not found in response headers. Checking response body.');
-                token = data.token; // Fallback to check if token is in the response body
+                token = data.token; 
             }
 
-            console.log('Received token:', token); // Log the token for debugging
-            console.log('Received data:', data); // Log the response data for debugging
+            console.log('Received token:', token); 
+            console.log('Received data:', data); 
 
             if (!token) {
                 throw new Error('Token not found in response headers or body');
@@ -102,7 +102,7 @@ const SignIn = () => {
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              {/* Icon for password visibility toggle */}
+              
             </InputAdornment>
           ),
         }}

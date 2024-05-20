@@ -116,7 +116,7 @@ const AddProduct = () => {
           styles={{
             control: (base) => ({ ...base, height: '52px', marginBottom: '10px' }),
             placeholder: (base) => ({ ...base, textAlign: 'left', marginLeft: '10px' }),
-            // Add additional styles here if needed
+            
           }}
         />
       </div>

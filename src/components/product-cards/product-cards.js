@@ -4,15 +4,15 @@ import { Card, CardMedia, CardContent, Typography, Button, IconButton, Modal, Ba
 import { Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { setSnackbarMessage } from '../../common/redux/actions/snackbar-actions'; // Import the setSnackbarMessage action
+import { setSnackbarMessage } from '../../common/redux/actions/snackbar-actions'; 
 
 const ProductCards = ({ searchQuery, category, sortBy }) => {
   const [products, setProducts] = useState([]);
   const { isLoggedIn, isAdmin } = useSelector(state => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [selectedProductId, setSelectedProductId] = useState(null); // State for selected product ID
-  const [open, setOpen] = useState(false); // State for deletion confirmation modal
+  const [selectedProductId, setSelectedProductId] = useState(null); 
+  const [open, setOpen] = useState(false); 
   const [originalOrder, setOriginalOrder] = useState([]);
 
 
@@ -63,7 +63,7 @@ const ProductCards = ({ searchQuery, category, sortBy }) => {
       } else if (sortBy === 'Newest') {
         return [...prevProducts].reverse();
       }
-      // Return the previous products array if sortBy doesn't match any condition
+      
       return prevProducts;
     });
   }, [sortBy, originalOrder]);
@@ -74,13 +74,13 @@ const ProductCards = ({ searchQuery, category, sortBy }) => {
       )
     : products;
 
-  // Function to handle opening the deletion confirmation modal
+  
   const handleOpenDeletionModal = (productId) => {
     setSelectedProductId(productId);
     setOpen(true);
   };
 
-  // Function to handle closing the deletion confirmation modal
+  
   const handleCloseDeletionModal = () => {
     setSelectedProductId(null);
     setOpen(false);
@@ -92,7 +92,7 @@ const ProductCards = ({ searchQuery, category, sortBy }) => {
     fetch(`http://localhost:8080/api/products/${selectedProductId}`)
       .then(response => response.json())
       .then(product => {
-        const productName = product.name; // Extract the product name
+        const productName = product.name; 
         // Delete the product
         fetch(`http://localhost:8080/api/products/${selectedProductId}`, {
           method: 'DELETE',
@@ -133,7 +133,7 @@ const ProductCards = ({ searchQuery, category, sortBy }) => {
       .catch(error => console.error('Error fetching products:', error));
   };
 
-  // Rendered JSX
+  
   return (
     <div>
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', marginLeft: '120px', marginRight: '120px', marginTop: '20px' }}>

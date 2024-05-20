@@ -17,7 +17,6 @@ const CategoryTab = ({ setSelectedCategory }) => {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-      {/* Category tabs */}
       <ToggleButtonGroup
         exclusive
         onChange={(event, newCategory) => setSelectedCategory(newCategory)}

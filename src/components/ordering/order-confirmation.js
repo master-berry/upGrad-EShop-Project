@@ -2,9 +2,9 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Typography, Button, Box, Stepper, Step, StepLabel } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSnackbarMessage } from '../../common/redux/actions/snackbar-actions'; // Import the action
+import { setSnackbarMessage } from '../../common/redux/actions/snackbar-actions'; 
 
-// Selector to get user data from Redux store
+
 const selectUserData = state => state.user.userData;
 
 const OrderConfirmation = () => {

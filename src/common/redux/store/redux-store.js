@@ -1,5 +1,3 @@
-// redux/store.js
-
 import { createStore, applyMiddleware } from 'redux';
 import { thunk } from 'redux-thunk'; // Import thunk correctly
 import rootReducer from '../reducers/root-reducer'; // Assuming you have reducers in a 'reducers' folder
