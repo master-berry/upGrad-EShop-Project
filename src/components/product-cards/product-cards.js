@@ -97,7 +97,7 @@ const ProductCards = ({ searchQuery, category, sortBy }) => {
         fetch(`http://localhost:8080/api/products/${selectedProductId}`, {
           method: 'DELETE',
           headers: {
-            'Authorization': `Bearer ${token}`
+            'x-auth-token': `${token}`
           }
         })
         .then(response => {

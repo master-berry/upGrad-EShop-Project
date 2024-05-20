@@ -56,7 +56,7 @@ const AddProduct = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'x-auth-token': `${token}`
         },
         body: JSON.stringify(productData),
       });

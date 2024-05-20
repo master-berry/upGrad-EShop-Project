@@ -47,11 +47,9 @@ const OrderConfirmation = () => {
       } else {
         const errorData = await response.json();
         dispatch(setSnackbarMessage(`Failed to place order: ${errorData.message}`));
-        navigate('/products'); // Redirect to products page
       }
     } catch (error) {
       dispatch(setSnackbarMessage('An unexpected error occurred while placing the order.'));
-      navigate('/products'); // Redirect to products page
     }
   };
 
